@@ -4,6 +4,8 @@ from bird import Bird
 from pipe import Pipe
 from base import Base
 
+pg.init()
+
 # Variables and constants
 WIDTH, HEIGHT = 715, 1530
 FPS = 32
