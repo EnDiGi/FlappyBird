@@ -8,7 +8,7 @@ pg.init()
 
 # Variables and constants
 WIDTH, HEIGHT = 715, 1530
-FPS = 32
+FPS = 60
 clock = pg.time.Clock()
 
 WIN = pg.display.set_mode((WIDTH, HEIGHT))
