@@ -82,7 +82,7 @@ def main():
         if j_frame: # If it's already jumping
           j_frame = 0
         j_frame += 1
-        velY = (bird.flap() // j_frames)
+        velY += (bird.flap() // j_frames)
         started = True
     
     birdY += velY # Applies the speed changes made previously
