@@ -53,9 +53,7 @@ def main():
   bird = Bird()
   base = Base()
   
-  while running:
-    if check_loss([birdX, birdY], pipes, base):
-      break
+  while running:    
     velY = 0
     if started:
       velY += bird.fall()
@@ -88,6 +86,8 @@ def main():
     birdY += velY # Applies the speed changes made previously
     draw(birdX, birdY, pipes, started)       
     pg.display.flip()
+    if check_loss([birdX, birdY], pipes, base):
+      break
     frames += 1
     clock.tick(FPS)
 
