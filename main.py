@@ -42,7 +42,6 @@ def check_loss(coord, pipes, base):
     if pipe.check_collision(bird_rect):
       return True
   return False
-
  
 def increase_score(coord, pipes, score):
   bird_rect = pg.Rect(coord[0], coord[1], PLAYER.get_width(), PLAYER.get_height())
