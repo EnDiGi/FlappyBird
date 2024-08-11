@@ -3,4 +3,4 @@ class Bird:
     return -210
 
   def fall(self):
-    return 8
+    return 20
