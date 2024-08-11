@@ -87,10 +87,9 @@ def end(score, font):
     
     if new:
       best_txt = small_font.render("New highscore!" , False, (255, 255, 255))
-      best_rect = best_txt.get_rect(center = (WIDTH // 2, HEIGHT // 2 + 100))
     else:
       best_txt = small_font.render(f"Best: {best}" , False, (255, 255, 255))
-      best_rect = best_txt.get_rect(center = (WIDTH // 2, HEIGHT // 2 + 100))
+    best_rect = best_txt.get_rect(center = (WIDTH // 2, HEIGHT // 2 + 60))
       
     WIN.blit(score_txt, rect)
     WIN.blit(best_txt, best_rect)
