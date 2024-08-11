@@ -7,35 +7,35 @@ from base import Base
 pg.init()
 
 # Variables and constants
-WIDTH, HEIGHT = 715, 1530
+WIDTH, HEIGHT = 400, 650
 FPS = 60
 clock = pg.time.Clock()
 
 WIN = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("Flappy Bird")
 BG = pg.transform.scale(pg.image.load("background.jpg"), (WIDTH, HEIGHT))
-PLAYER = pg.transform.scale(pg.image.load("bird.png"), (80, 57))
-PIPE_DOWN = pg.transform.scale(pg.image.load("pipe.png"), (120, 980))
+PLAYER = pg.transform.scale(pg.image.load("bird.png"), (40, 28))
+PIPE_DOWN = pg.transform.scale(pg.image.load("pipe.png"), (60, 490))
 PIPE_UP = pg.transform.flip(PIPE_DOWN, False, True)
 BASE = pg.transform.scale(pg.image.load("base.png"), (WIDTH, 100))
 
 def draw(birdX, birdY, pipes, started, font, score):
   text = font.render(str(score), True, (255, 255, 255))
-  rect = text.get_rect(center = (357, 150))
+  rect = text.get_rect(center = (WIDTH // 2, 50))
   
   WIN.blit(BG, (0, 0))
-  WIN.blit(BASE, (0, 1430))
+  WIN.blit(BASE, (0, HEIGHT - 100))
   WIN.blit(PLAYER, (birdX, birdY))
   WIN.blit(text, rect)
   
   if started:
     for pipe in pipes:
       pipe.move_and_draw(WIN, PIPE_UP, PIPE_DOWN)
-    pipes = [pipe for pipe in pipes if pipe.x >= 120]
-        
+    pipes = [pipe for pipe in pipes if pipe.x >= -120]
+
 def check_loss(coord, pipes, base):
   bird_rect = pg.Rect(coord[0], coord[1], PLAYER.get_width(), PLAYER.get_height())
-  if base.check_collision(coord):
+  if base.check_collision(coord, HEIGHT):
     return True
   for pipe in pipes:
     if pipe.check_collision(bird_rect):
@@ -50,7 +50,7 @@ def increase_score(coord, pipes, score):
 
 def main():
   WIN.fill((0, 0, 0))
-  font = pg.font.Font(None, 250)
+  font = pg.font.Font(None, 100)
   
   while True:
     score = game(font)
@@ -60,7 +60,7 @@ def end(score, font):
   clock = pg.time.Clock()
   new = False
   
-  small_font = pg.font.Font(None, 74)
+  small_font = pg.font.Font(None, 40)
   
   with open("best.txt", "r") as f:
     old = int(f.read())
@@ -101,14 +101,14 @@ def end(score, font):
 def game(font):
   running = True
   
-  birdX, birdY = 50, 700
+  birdX, birdY = 49 , HEIGHT // 2
   started = False
   pipes = []
   frames = 0
   score = 0
     
   j_frame = 0 # Current jump frame
-  j_frames = 10 # Jump frames
+  j_frames = 17 # Jump frames
   
   bird = Bird()
   base = Base()
@@ -118,8 +118,8 @@ def game(font):
     if started:
       velY += bird.fall()
       
-      if frames % 50 == 0:
-        pipes.append(Pipe())
+      if frames % 90 == 0:
+        pipes.append(Pipe(HEIGHT, WIDTH))
         frames = 0
       
     if j_frame == j_frames:
