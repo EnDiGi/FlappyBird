@@ -1,5 +1,5 @@
 class Base:
-  def check_collision(self, coord):
-    if coord[1] + 57 >= 1430:
+  def check_collision(self, coord, height):
+    if coord[1] + 28 >= height - 100:
       return True
     return False
