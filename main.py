@@ -31,8 +31,7 @@ def draw(birdX, birdY, pipes, started, font, score):
   if started:
     for pipe in pipes:
       pipe.move_and_draw(WIN, PIPE_UP, PIPE_DOWN)
-      if pipe.x <= -100:
-        pipes.remove(pipe)
+    pipes = [pipe for pipe in pipes if pipe.x >= 120]
         
 def check_loss(coord, pipes, base):
   bird_rect = pg.Rect(coord[0], coord[1], PLAYER.get_width(), PLAYER.get_height())
