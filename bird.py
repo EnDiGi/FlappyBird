@@ -1,6 +1,6 @@
 class Bird:
   def flap(self):
-    return -210
+    return -110
 
   def fall(self):
-    return 20
+    return 5
