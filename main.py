@@ -123,6 +123,7 @@ def game(font):
       
     if j_frame == j_frames:
       j_frame = 0
+      frames += 1
       clock.tick(FPS)
       continue
       
